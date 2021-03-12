@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+    <bean id="cat" name="cat" class="com.spring3.zoo.impl.Cat"/>
+    <bean id="dog" name="dog" class="com.spring3.zoo.impl.Dog">
+        <property name="age" value="2"/>
+    </bean>
+
+    <bean name="setterZoo" class="com.spring3.zoo.Zoo">
+        <property name="animal1" ref="cat"/>
+        <property name="animal2" ref="dog"/>
+        <property name="animals">
+            <list>
+                <ref bean="cat"/>
+                <ref bean="dog"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="constructorZoo" class="com.spring3.zoo.Zoo">
+        <constructor-arg name="animal2" ref="dog"/>
+        <constructor-arg name="animal1" ref="cat"/>
+    </bean>
+
+    <bean name="constructorZooWithNewInnerBeans" class="com.spring3.zoo.Zoo">
+        <constructor-arg name="animal2">
+            <bean class="com.spring3.zoo.impl.Dog"/>
+        </constructor-arg>
+        <constructor-arg name="animal1" ref="cat"/>
+    </bean>
+
+</beans>
